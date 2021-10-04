@@ -13,8 +13,10 @@ endif
 
 export TEXMFHOME ?= lsst-texmf/texmf
 
-$(DOCNAME).pdf: $(tex) meta.tex local.bib authors.tex acronyms.tex
+$(DOCNAME).pdf: $(tex) meta.tex O3-002.bib authors.tex acronyms.tex
 	latexmk -bibtex -xelatex -f $(DOCNAME)
+O3-002.pdf: $(tex) O3-002.bib authors.tex 
+	latexmk -bibtex -xelatex -f O3-002
 
 # Acronym tool allows for selection of acronyms based on tags - you may want more than DM
 acronyms.tex: $(tex) myacronyms.txt

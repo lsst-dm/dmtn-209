@@ -1,0 +1,62 @@
+\documentclass[11pt,twoside]{article}
+
+% Do NOT use ANY packages other than asp2014.
+\usepackage{asp2014}
+
+\aspSuppressVolSlug
+\resetcounters
+
+% References must all use BibTeX entries in a .bibfile.
+% References must be cited in the text using \citet{} or \citep{}.
+% Do not use \cite{}.
+% See ManuscriptInstructions.pdf for more details
+\bibliographystyle{asp2014}
+
+% The ``markboth'' line sets up the running heads for the paper.
+% 1 author: "Surname"
+% 2 authors: "Surname1 and Surname2"
+% 3 authors: "Surname1, Surname2, and Surname3"
+% >3 authors: "Surname1 et al."
+% Replace ``Short Title'' with the actual paper title, shortened if necessary.
+% Use mixed case type for the shortened title
+% Ensure shortened title does not cause an overfull hbox LaTeX error
+% See ASPmanual2010.pdf 2.1.4  and ManuscriptInstructions.pdf for more details
+\markboth{Economou, O'Mullane}{Rubin Science Platform on Google Title}
+
+\begin{document}
+
+\title{Rubin Science Platform on Google: the story so far.}
+
+% Note the position of the comma between the author name and the
+% affiliation number.
+% Authors surnames should come after first names or initials, eg John Smith, or J. Smith.
+% Author names should be separated by commas.
+% The final author should be preceded by "and".
+% Affiliations should not be repeated across multiple \affil commands. If several
+% authors share an affiliation this should be in a single \affil which can then
+% be referenced for several author names. If only one affiliation, no footnotes are needed.
+% See ManuscriptInstructions.pdf and ASP's manual2010.pdf 3.1.4 for more details
+\input{authors}
+
+% There should be one \aindex line (commented out) for each author. These are used to
+% build up the author index for the Proceedings. The surname must come first, followed by
+% initials. Note the use of ~ before each initial to control spacing.
+% The \author entries (see above) have surname last. These \aindex entries have
+% surname first.
+% The Aindex.py command willl create them for you after you have constructed the \author
+% The first entry should be the first author, for bold-facing the author index page-reference
+
+%\aindex{FistAuthor1,~S.~A.}
+%\aindex{Author2,~S.~B.}
+%\aindex{Author3,~S.}
+
+
+\input{abstract}
+
+\input{body}
+
+
+\bibliography{O3-002}  % For BibTex
+
+
+\end{document}
