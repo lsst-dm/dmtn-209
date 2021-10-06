@@ -1,6 +1,4 @@
-DOCTYPE = DMTN
-DOCNUMBER = 209
-DOCNAME = $(DOCTYPE)-$(DOCNUMBER)
+DOCNAME = 03-002
 
 tex = $(filter-out $(wildcard *acronyms.tex) , $(wildcard *.tex))
 
@@ -13,8 +11,9 @@ endif
 
 export TEXMFHOME ?= lsst-texmf/texmf
 
-$(DOCNAME).pdf: $(tex) meta.tex O3-002.bib authors.tex acronyms.tex
-	latexmk -bibtex -xelatex -f $(DOCNAME)
+#$(DOCNAME).pdf: $(tex) meta.tex O3-002.bib authors.tex acronyms.tex
+#	latexmk -bibtex -xelatex -f $(DOCNAME)
+
 O3-002.pdf: $(tex) O3-002.bib authors.tex 
 	latexmk -bibtex -xelatex -f O3-002
 
@@ -23,7 +22,7 @@ acronyms.tex: $(tex) myacronyms.txt
 	$(TEXMFHOME)/../bin/generateAcronyms.py -t "DM" $(tex)
 
 authors.tex:  authors.yaml
-	python3 $(TEXMFHOME)/../bin/db2authors.py > authors.tex 
+	python3 $(TEXMFHOME)/../bin/db2authors.py --mode adass > authors.tex 
 
 .PHONY: clean
 clean:
