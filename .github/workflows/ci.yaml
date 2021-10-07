@@ -43,4 +43,4 @@ jobs:
           LTD_PASSWORD: ${{ secrets.LTD_PASSWORD }}
           LTD_USERNAME: ${{ secrets.LTD_USERNAME }}
         run: |
-          lander --upload --pdf O3-002.pdf --ltd-product dmtn-209
+          lander --upload --pdf DMTN-209.pdf --ltd-product dmtn-209
