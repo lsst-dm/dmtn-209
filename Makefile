@@ -18,7 +18,6 @@ O3-002.pdf: $(tex) O3-002.bib authors.tex
 	latex O3-002
 	latex O3-002
 	dvipdfm O3-002
-	cp O3-002.pdf DMTN-209.pdf 
 
 # Acronym tool allows for selection of acronyms based on tags - you may want more than DM
 acronyms.tex: $(tex) myacronyms.txt
