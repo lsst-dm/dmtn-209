@@ -13,7 +13,6 @@ In a competitive tender we selected google for this three year activity.
 We have installed construction delivered services (Rubin Science Platform and middleware/plumbing) on Google Cloud Platform. The architecture is depicted in Figure \ref{fig:IDFarch}.
 In addition running services at scale allows for a high degree of readiness for Data Production activity in full survey operations
 
-{\bf Terraform}
 
 
 
@@ -23,6 +22,7 @@ In addition running services at scale allows for a high degree of readiness for 
 The IDF will be used for a series of Data Previews (DP). DP0 is using simulated data, DP1 commissioning camera data
 and DP2 LSST Cam commissioning data. DP0 currently has two phases as outlined in the next sections.
 
+\subsection{ Terraform}
 
 \section{Data Preview 0.1}
 In June 2021  \href{  data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates.
@@ -41,7 +41,7 @@ Thus demonstrating a portable set of cloud enabled tools based on Butler Gen3 an
 The Rubin Community Engagement Team (CET) provided support to delegates.
 Biweekly virtual “Delegate Assemblies” with hands-on demonstrations were held, and continue monthly.
 DP0 documentation was mentioned above there were also many tutorial Notebooks.
-A dedicated Community.lsst.org category: “Support -- Data Preview 0” was created.
+A dedicated \href{https://community.lsst.org/c/support/dp0/}{Community.lsst.org category: “Support -- Data Preview 0”} was created.
 This is also publicly accessible to non-delegates.
 
 
@@ -51,6 +51,12 @@ For example Qserv (ADQL) can build great histograms (minutes for full dataset) b
 tended to do this in python by running a query to extract all the data and ten binning in python.
 AutoScale really works - but its not really fast, takes minutes to spin up new node - eons as far as users concerned!
 DASK looks very interesting but we are not sure how to mange that yet learning to be done.
+No matter how much you prepare you always learn something new!
+
+Since we built cloud ready services setup on GCP was fairly painless and smooth
+Support from Google and Burwood was excellent and rapid, weekly tag-ups continue to make sure everything is in place or planned.
+Since Rubin is between data facilities for some years this is a quite cost effective approach.
+
 
 
 
