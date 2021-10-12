@@ -7,18 +7,44 @@ We have recently begun a pre operations program which includes exposing users to
 
 
 \section{Interim Data Facility on Google }
+We decided on an Interim Data Facility (IDF) to mitigate the risks of — and the delay imposed by — the USDF(US Data Facility)  selection process.
+We felt this an excellent transition activity to prepare Ops team and Community for Rubin data.
+In a competitive tender we selected google for this three year activity.
+We have installed construction delivered services (Rubin Science Platform and middleware/plumbing) on Google Cloud Platform. The architecture is depicted in Figure \ref{fig:IDFarch}.
+In addition running services at scale allows for a high degree of readiness for Data Production activity in full survey operations
+
+
 
 \articlefigure[width=0.9\textwidth]{IDFarch.eps}{fig:IDFarch}{Architecture of the Interim Data Facility on Google, gray Items (alerts) are not yet implemented but shall be in 2022.}
 
 
+The IDF will be used for a series of Data Previews (DP). DP0 is using simulated data, DP1 commissioning camera data
+and DP2 LSST Cam commissioning data. DP0 currently has two phases as outlined in the next sections.
+
+
 \section{Data Preview 0.1}
+In June 2021  \href{  data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates.
+Documentation is hosted on \href{ dp0-1.lsst.io}{ dp0-1.lsst.io}.
+The data served was a the DESC DC2 simulated data \citep{arXiv:2010.05926}.
+
 
 
 \section{Data Preview 0.2}
+For DP0.2 we shall reprocess the DESC data (DP0.1) with Pipelines V23, to generate a fully self-consistent data release.
+This will entail producing all the data products and catalogs as well as loading the  catalogs in Qserv.
+Thus demonstrating a portable set of cloud enabled tools based on Butler Gen3 and PanDA.
+
+
 
 \section{Community engagement }
 
 \section{Conclusion and lessons learned}
+Users need a lot of guidance if we are to be efficient.
+For example Qserv (ADQL) can build great histograms (minutes for full dataset) but users tended
+tended to do this in python by running a query to extract all the data and ten binning in python.
+AutoScale really works - but its not really fast, takes minutes to spin up new node - eons as far as users concerned!
+DASK looks very interesting but we are not sure how to mange that yet learning to be done.
+
 
 
 
