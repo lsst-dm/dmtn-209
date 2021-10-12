@@ -1,4 +1,4 @@
-DOCNAME = 03-002
+DOCNAME = O3-002
 
 tex = $(filter-out $(wildcard *acronyms.tex) , $(wildcard *.tex))
 
