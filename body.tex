@@ -22,7 +22,11 @@ In addition running services at scale allows for a high degree of readiness for 
 The IDF will be used for a series of Data Previews (DP). DP0 is using simulated data, DP1 commissioning camera data
 and DP2 LSST Cam commissioning data. DP0 currently has two phases as outlined in the next sections.
 
-\subsection{ Terraform}
+\subsection{ Docker, Kubernetes, Terraform}
+The setup of the infrastructure such as clusters on GCP is done using Terraform\footnote{\url{https://www.terraform.io/}}.
+Typically we have development, integration and production clusters for each major deployment e.g. Science Platform and Qserv.
+The orchestration of the Rubin application containers is done using Kubernetes\footnote{\url{https://kubernetes.io/}} with deployment handled by ArgoCD\footnote{\url{https://argoproj.github.io/cd/}}
+Our build system, based on Jenkins and GitHub Actions,  produces Docker containers for deployment.
 
 \section{Data Preview 0.1}
 In June 2021  \href{  data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates.
