@@ -19,8 +19,6 @@ In addition running services at scale allows for a high degree of readiness for 
 \articlefigure[width=0.9\textwidth]{IDFarch.eps}{fig:IDFarch}{Architecture of the Interim Data Facility on Google, gray Items (alerts) are not yet implemented but shall be in 2022.}
 
 
-The IDF will be used for a series of Data Previews (DP). DP0 is using simulated data, DP1 commissioning camera data
-and DP2 LSST Cam commissioning data. DP0 currently has two phases as outlined in the next sections.
 
 \subsection{ Docker, Kubernetes, Terraform}
 The setup of the infrastructure such as clusters on GCP is done using Terraform\footnote{\url{https://www.terraform.io/}}.
@@ -28,14 +26,18 @@ Typically we have development, integration and production clusters for each majo
 The orchestration of the Rubin application containers is done using Kubernetes\footnote{\url{https://kubernetes.io/}} with deployment handled by ArgoCD\footnote{\url{https://argoproj.github.io/cd/}}
 Our build system, based on Jenkins and GitHub Actions,  produces Docker containers for deployment.
 
-\section{Data Preview 0.1}
+\section {Data Previews}
+The IDF will be used for a series of Data Previews (DP). DP0 is using simulated data, DP1 commissioning camera data
+and DP2 LSST Cam commissioning data. DP0 currently has two phases as outlined in Sections \ref{sec:dp0} and \ref {sec:dp1}.
+
+\subsection{Data Preview 0.1}\label{sec:dp01}
 In June 2021  \href{  data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates.
 Documentation is hosted on \href{ dp0-1.lsst.io}{ dp0-1.lsst.io}.
 The data served was a the DESC DC2 simulated data \citep{arXiv:2010.05926}.
 
 
 
-\section{Data Preview 0.2}
+\subsection{Data Preview 0.2}\label{sec:dp02}
 For DP0.2 we shall reprocess the DESC data (DP0.1) with Pipelines V23, to generate a fully self-consistent data release.
 This will entail producing all the data products and catalogs as well as loading the  catalogs in Qserv.
 Thus demonstrating a portable set of cloud enabled tools based on Butler Gen3 and PanDA.
