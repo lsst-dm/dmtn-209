@@ -10,8 +10,11 @@ We have recently begun a pre operations program which includes exposing users to
 We decided on an Interim Data Facility (IDF) to mitigate the risks of — and the delay imposed by — the USDF(US Data Facility)  selection process.
 We felt this an excellent transition activity to prepare Ops team and Community for Rubin data.
 In a competitive tender we selected google for this three year activity.
-We have installed construction delivered services (Rubin Science Platform and middleware/plumbing) on Google Cloud Platform. The architecture is depicted in Figure \ref{fig:IDFarch}.
-In addition running services at scale allows for a high degree of readiness for Data Production activity in full survey operations
+We have installed construction delivered services (Rubin Science Platform and middleware/plumbing) on Google Cloud Platform.
+The architecture is depicted in Figure \ref{fig:IDFarch}.
+We primarily leverage Google Kubernetes Engine (aka. GKE) and Google Cloud Storage (aka. GCS) to scale up and down as needed while batch processing images from the observatory and serving the data release products.
+The full stack was automated using Terraform with help from Burwood, which is not highlighted in the diagram but is outlined in section \ref{sec:infra}.
+In addition running services at scale improves readiness for Data Production activity during full survey operations.
 
 
 
@@ -20,7 +23,7 @@ In addition running services at scale allows for a high degree of readiness for 
 
 
 
-\subsection{ Docker, Kubernetes, Terraform}
+\subsection{ Docker, Kubernetes, Terraform} \label{sec:infra}
 The setup of the infrastructure such as clusters on GCP is done using Terraform\footnote{\url{https://www.terraform.io/}}.
 Typically we have development, integration and production clusters for each major deployment e.g. Science Platform and Qserv.
 The orchestration of the Rubin application containers is done using Kubernetes\footnote{\url{https://kubernetes.io/}} with deployment handled by ArgoCD\footnote{\url{https://argoproj.github.io/cd/}}
@@ -53,9 +56,9 @@ This is also publicly accessible to non-delegates.
 
 \section{Conclusion and lessons learned}
 Users need a lot of guidance if we are to be efficient.
-For example Qserv (ADQL) can build great histograms (minutes for full dataset) but users tended
+For example Qserv (ADQL) can build great histograms (minutes for full dataset) but users
 tended to do this in python by running a query to extract all the data and ten binning in python.
-AutoScale really works - but its not really fast, takes minutes to spin up new node - eons as far as users concerned!
+AutoScale really works - but its not really fast considering our containers, it takes minutes to spin up new node - eons as far as users concerned!
 DASK looks very interesting but we are not sure how to mange that yet learning to be done.
 No matter how much you prepare you always learn something new!
 
