@@ -32,7 +32,9 @@ authors.tex:  authors.yaml
 clean:
 	latexmk -c
 	rm -f $(DOCNAME).bbl
-	rm -f $(DOCNAME).pdf
+	rm -f $(DOCNAME).out
+	rm -f $(DOCNAME).dvi
+	rm -f $(DOCNAME).xdv
 	rm -f meta.tex
 
 .FORCE:
