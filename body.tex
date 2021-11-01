@@ -3,18 +3,18 @@
 \section{Introduction}
 
 The Legacy Survey of Space and Time is an optical/near-IR survey of half the sky in ugrizy bands to r 27.5 (36 nJy) based on 825 visits over a 10-year period: deep wide fast.
-Carried out by Rubin observatory on Cerro Pcon Chile the survey will produce around 100 PB of data consisting of about a billion 16 Mpix images, enabling measurements for 40 billion objects! \cite{arXiv:0805.2366}
+Carried out by Rubin observatory on Cerro Pach\'{o}n Chile the survey will produce around 100 PB of data consisting of about a billion 16 Mpix images, enabling measurements for 40 billion objects! \cite{arXiv:0805.2366}
 
 We have recently begun a pre operations program which includes exposing users to the Science Platform.
 
 
 \section{Interim Data Facility on Google }
-We decided on an Interim Data Facility (IDF) to mitigate the risks of — and the delay imposed by — the USDF(US Data Facility)  selection process.
-We felt this an excellent transition activity to prepare Ops team and Community for Rubin data.
+We decided on an Interim Data Facility (IDF) to mitigate the risks of — and the delay imposed by — the US Data Facility(USDF)  selection process.
+We felt this an excellent transition activity to prepare the operations  team and Community for Rubin data.
 In a competitive tender we selected Google for this three year activity.
 We have installed construction delivered services (Rubin Science Platform and middleware/plumbing) on Google Cloud Platform.
 The architecture is depicted in Figure \ref{fig:IDFarch}.
-We primarily leverage Google Kubernetes Engine (GKE) and Google Cloud Storage (GCS) to scale up and down as needed while batch processing images from the observatory and serving the data release products.
+We primarily leverage Google Kubernetes Engine (GKE) and Google Cloud Storage (GCS) to scale up and down as needed while batch processing images  and serving the data release products.
 The full stack was automated using Terraform with help from Burwood, which is not highlighted in the diagram but is outlined in section \ref{sec:infra}.
 In addition running services at scale improves readiness for Data Production activity during full survey operations.
 
@@ -28,8 +28,8 @@ In addition running services at scale improves readiness for Data Production act
 \subsection{ Docker, Kubernetes, Terraform} \label{sec:infra}
 The setup of the infrastructure such as clusters on GCP is done using Terraform\footnote{\url{https://www.terraform.io/}}.
 Typically we have development, integration and production clusters for each major deployment e.g. Science Platform and Qserv.
-The orchestration of the Rubin application containers is done using Kubernetes\footnote{\url{https://kubernetes.io/}} with deployment handled by ArgoCD\footnote{\url{https://argoproj.github.io/cd/}}
-Our build system, based on Jenkins and GitHub Actions,  produces Docker containers for deployment.
+The orchestration of the Rubin application containers is done using Kubernetes\footnote{\url{https://kubernetes.io/}} with deployment handled by ArgoCD\footnote{\url{https://argoproj.github.io/cd/}}.
+Our build system, based on Jenkins and GitHub Actions,  produces Docker containers for deployment \citep{2018SPIE10707E..09J}.
 
 \section {Data Previews}
 The IDF will be used for a series of Data Previews (DP). DP0 is using simulated data, DP1 commissioning camera data
@@ -73,7 +73,7 @@ DASK looks very interesting but we are not sure how to mange that yet learning t
 No matter how much you prepare you always learn something new!
 
 Management buy in is a big part of any cloud adventure, there is a  lot of reluctance to change from in house models
-which requires much convincing. One thing we did were proof on concept studies with both Amazon \citep{DMTN-137} and Google \citep{DMTN-125}. Each ran for six months and demonstrated we could deploy and operate on either platform. This allayed concerns about vendor lockin and improved cost models.
+which requires much convincing. One thing we did were proof on concept studies with both Amazon \citep{2019AAS...23324505B,DMTN-137} and Google \citep{DMTN-125}. Each ran for six months and demonstrated we could deploy and operate on either platform. This allayed concerns about vendor lockin and improved cost models.
 
 Since we built cloud ready services setup on GCP was fairly painless and smooth
 Support from Google and Burwood was excellent and rapid, weekly tag-ups continue to make sure everything is in place or planned.
