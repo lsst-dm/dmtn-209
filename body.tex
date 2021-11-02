@@ -3,9 +3,9 @@
 \section{Introduction}
 
 The Legacy Survey of Space and Time is an optical/near-IR survey of half the sky in ugrizy bands to r 27.5 (36 nJy) based on 825 visits over a 10-year period: deep wide fast.
-Carried out by Rubin observatory on Cerro Pach\'{o}n Chile the survey will produce around 100 PB of data consisting of about a billion 16 Mpix images, enabling measurements for 40 billion objects! \cite{arXiv:0805.2366}
+Carried out by Rubin observatory on Cerro Pach\'{o}n Chile the survey will produce around 100 PB of data consisting of about a billion 16 Mpix images, enabling measurements for 40 billion objects! \cite{2019ApJ...873..111I}
 
-We have recently begun a pre operations program which includes exposing users to the Science Platform.
+We have recently begun a preoperations program which includes exposing users to the Science Platform.
 
 
 \section{Interim Data Facility on Google }
@@ -15,7 +15,7 @@ In a competitive tender we selected Google for this three year activity.
 We have installed construction delivered services (Rubin Science Platform and middleware/plumbing) on Google Cloud Platform.
 The architecture is depicted in Figure \ref{fig:IDFarch}.
 We primarily leverage Google Kubernetes Engine (GKE) and Google Cloud Storage (GCS) to scale up and down as needed while batch processing images  and serving the data release products.
-The full stack was automated using Terraform with help from Burwood, which is not highlighted in the diagram but is outlined in section \ref{sec:infra}.
+The full stack was automated using Terraform with help from the Burwood Group, which is not highlighted in the diagram but is outlined in section \ref{sec:infra}.
 In addition running services at scale improves readiness for Data Production activity during full survey operations.
 
 
@@ -32,8 +32,8 @@ The orchestration of the Rubin application containers is done using Kubernetes\f
 Our build system, based on Jenkins and GitHub Actions,  produces Docker containers for deployment \citep{2018SPIE10707E..09J}.
 
 \section {Data Previews}
-The IDF will be used for a series of Data Previews (DP). DP0 is using simulated data, DP1 commissioning camera data
-and DP2 LSST Cam commissioning data. DP0 currently has two phases as outlined in Sections \ref{sec:dp01} and \ref {sec:dp02}.
+The IDF will be used for a series of Data Previews (DP)\citep{RDO-011}. DP0 is using simulated data, DP1 commissioning camera data
+and DP2 LSST Cam commissioning data. DP0 currently has two phases as outlined in Sections \ref{sec:dp01} and \ref {sec:dp02}\cite{RTN-001}.
 
 \subsection{Data Preview 0.1}\label{sec:dp01}
 In June 2021  \href{  data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates.
@@ -45,7 +45,7 @@ The data served was a the DESC DC2 simulated data \citep{arXiv:2010.05926}.
 \subsection{Data Preview 0.2}\label{sec:dp02}
 For DP0.2 we shall reprocess the DESC data (DP0.1) with Pipelines V23, to generate a fully self-consistent data release.
 This will entail producing all the data products and catalogs as well as loading the  catalogs in Qserv.
-Thus demonstrating a portable set of cloud enabled tools based on Butler Gen3 and PanDA.
+Thus demonstrating a portable set of cloud enabled tools based on Butler Gen3\citep{2019ASPC..523..653J} and PanDA.
 
 
 \section{Community engagement }
@@ -53,7 +53,7 @@ The Rubin Community Engagement Team (CET) provided documentation and support to 
 The term ``DP0 delegates" was adopted to reflect DP0 participants’ important roles of representing the broad science community as learners, testers, and providers of feedback, and of sharing the benefits of their DP0 participation with their communities as teachers and colleagues.
 
 Documentation at \url{dp0-1.lsst.io} included a delegate's homepage listing all the resources, events, guidelines, and expectations; descriptions of the data products and table schema; instructions for accessing the RSP's three aspects and usage risks; and tutorials to demonstrate simple science investigations with the DP0 data set at the RSP.
-Delegate resources included biweekly virtual “Delegate Assemblies” with hands-on demonstrations and breakout rooms to facilitate co-working; a dedicated category in the Rubin Community Forum (Community.lsst.org) where delegates can ask questions and discuss their DP0 work; and a GitHub repository where delegates can contribute to shared code and notebooks.
+Delegate resources included biweekly virtual “Delegate Assemblies” with hands-on demonstrations and breakout rooms to facilitate co-working; a dedicated category in the Rubin Community Forum (\url{Community.lsst.org}) where delegates can ask questions and discuss their DP0 work; and a GitHub repository where delegates can contribute to shared code and notebooks.
 GitHub Issues were also used as a means for delegates to request technical assistance.
 
 Rubin staff from the CET and Data Production worked together to respond to delegate's requests for support and bug reports.
@@ -66,7 +66,7 @@ supported by infrastructure, that is able to help itself and to crowd-source sol
 \section{Conclusion and lessons learned}
 User feedback has been very positive on this initial Science Platform.
 Users do need a lot of guidance if we are to be efficient.
-For example Qserv (ADQL) can build great histograms (minutes for full dataset) but users
+For example Qserv, accepting ADQL, can build great histograms (minutes for full dataset) but users
 tended to do this in python by running a query to extract all the data and then binning it in python.
 AutoScale really works - but its not really fast considering our containers, it takes minutes to spin up new node - eons as far as users concerned!
 DASK looks very interesting but we are not sure how to mange that yet learning to be done.
