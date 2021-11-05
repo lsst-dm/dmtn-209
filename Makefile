@@ -14,9 +14,10 @@ export TEXMFHOME ?= lsst-texmf/texmf
 #$(DOCNAME).pdf: $(tex) meta.tex O3-002.bib authors.tex acronyms.tex
 #	latexmk -bibtex -xelatex -f $(DOCNAME)
 
-O3-002.pdf: $(tex) O3-002.bib authors.tex 
+O3-002.pdf: $(tex) O3-002.bib authors.tex
 	latex O3-002
 	bibtex O3-002
+	latex O3-002
 	latex O3-002
 	dvipdfm O3-002
 	dvipdf O3-002
@@ -26,7 +27,7 @@ acronyms.tex: $(tex) myacronyms.txt
 	$(TEXMFHOME)/../bin/generateAcronyms.py -t "DM" $(tex)
 
 authors.tex:  authors.yaml
-	python3 $(TEXMFHOME)/../bin/db2authors.py --mode adass > authors.tex 
+	python3 $(TEXMFHOME)/../bin/db2authors.py --mode adass > authors.tex
 
 .PHONY: clean
 clean:
