@@ -62,6 +62,8 @@ tended to do this inPpython by running a query to extract all the data and then 
 AutoScale really works -- but it's not really fast considering our containers, it takes minutes to spin up new node -- eons as far as users concerned!
 DASK looks very interesting but we are not sure how to manage resource allocations yet.
 No matter how much you prepare you always learn something new!
+The Data Butler abstracts data access from the user and we designed the Butler to support pluggable backends from the beginning.
+Deploying the Butler to Google was relatively straightforward since Butler already supported Postgres for the registry and S3 for file access.
 
 Management buy-in is a big part of any cloud adventure, there is a lot of reluctance to change from in-house models
 which requires much convincing. One thing we did were proof of concept studies with both Amazon \citep{2020arXiv201106044B,DMTN-137} and Google \citep{DMTN-125}. Each ran for six months and demonstrated we could deploy and operate on either platform. This allayed concerns about vendor lockin and improved cost models.
