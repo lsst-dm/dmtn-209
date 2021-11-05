@@ -23,7 +23,7 @@
 % Use mixed case type for the shortened title
 % Ensure shortened title does not cause an overfull hbox LaTeX error
 % See ASPmanual2010.pdf 2.1.4  and ManuscriptInstructions.pdf for more details
-\markboth{Economou, O'Mullane}{Rubin Science Platform on Google Title}
+\markboth{O'Mullane, Economou}{Rubin Science Platform on Google Title}
 
 \begin{document}
 
@@ -63,31 +63,21 @@
 The Legacy Survey of Space and Time \citep{2019ApJ...873..111I} is an optical/near-IR survey of half the sky in ugrizy bands to r 27.5 (36 nJy) based on 825 visits over a 10-year period: deep wide fast.
 Carried out by Rubin observatory on Cerro Pach\'{o}n Chile, the survey will produce around 100\,PB of data consisting of about a billion 16\,Mpix images, enabling measurements for 40 billion objects!
 
-We have recently begun a preoperations program which includes exposing users to the Science Platform.
+As a big data project, Rubin is providing a "bring-your-compute-to-the-data" model relying on a project-provided Rubin Science Platform (hereafter RSP) to allow science users to access, visualize and analyze survey data products.
+This paper describes our experience with an early release of the RSP to users through our pre-operations program.
 
+\section{The Rubin Interim Data Facility on Google Cloud}
 
-\section{Interim Data Facility on Google }
-We decided on an Interim Data Facility (IDF) to mitigate the risks of — and the delay imposed by — the US Data Facility(USDF)  selection process.
-We felt this an excellent transition activity to prepare the operations  team and Community for Rubin data.
-In a competitive tender we selected Google for this three year activity.
-We have installed construction delivered services (Rubin Science Platform and middleware/plumbing) on Google Cloud Platform.
-The architecture is depicted in Figure \ref{fig:IDFarch}.
-We primarily leverage Google Kubernetes Engine (GKE) and Google Cloud Storage (GCS) to scale up and down as needed while batch processing images  and serving the data release products.
-The full stack was automated using Terraform with help from the Burwood Group, which is not highlighted in the diagram but is outlined in section \ref{sec:infra}.
-In addition running services at scale improves readiness for Data Production activity during full survey operations.
+We decided to deploy services involved in our pre-operations program on a commodity cloud services provider as an Interim Data Facility (IDF) to mitigate uncertainty in the final location of our operations-era US Data Facility (USDF).
+Following a competitive tender, we selected Google Cloud for this three-year activity to prepare our team for operational readiness and our community for interacting with Rubin data and services.
+The IDF is a full stand-alone facility (without dependance on on-premises computing) and is a real high-availability production environment for all services currently oriented to external users. These include the Rubin Science Platform as well as underlying services such as Qserv (our high performance database system) and Butler (data abstraction middleware).
 
+The architecture is depicted in Figure \ref{fig:IDFarch} and leverages the Google Kubernetes Engine (GKE) and Google Cloud Storage (GCS) to scale up and down as needed depending on demand.
+Kubernetes\footnote{\url{https://kubernetes.io/}} is our reference deployment platform both on-premises and in the Cloud as our services make heavy use of container orchestration patterns and consume containers produced by our build systems based on Jenkins and GitHub Actions,  produces Docker containers for deployment \citep[see e.g.,][]{2018SPIE10707E..09J}.
 
-
+Management of Google Cloud resources is fully captured in code (Terraform\footnote{\url{https://www.terraform.io/}}) developed by the Burwood Group and no production services rely on ad-hoc interactive use of the Google console. We use continuous deployment techniques to manage our services including tools such as ArgoCD\footnote{\url{https://argoproj.github.io/cd/}} even though we don't practice pure continuous deployment, having instead settled on a gated release model\footnote{\url{https://sqr-056.lsst.io}}.
 
 \articlefigure[width=0.9\textwidth]{IDFarch.eps}{fig:IDFarch}{Architecture of the Interim Data Facility on Google, gray Items (alerts) are not yet implemented but shall be in 2022.}
-
-
-
-\subsection{ Docker, Kubernetes, Terraform} \label{sec:infra}
-The setup of the infrastructure such as clusters on GCP is done using Terraform\footnote{\url{https://www.terraform.io/}}.
-Typically we have development, integration and production clusters for each major deployment e.g.\ Science Platform and Qserv.
-The orchestration of the Rubin application containers is done using Kubernetes\footnote{\url{https://kubernetes.io/}} with deployment handled by ArgoCD\footnote{\url{https://argoproj.github.io/cd/}}.
-Our build system, based on Jenkins and GitHub Actions,  produces Docker containers for deployment \citep[see e.g.,][]{2018SPIE10707E..09J}.
 
 \section {Data Previews}
 The IDF will be used for a series of Data Previews \citep[DP;][]{RDO-011}. DP0 is using simulated data, DP1 commissioning camera data,
