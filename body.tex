@@ -2,8 +2,8 @@
 %Slides on https://docs.google.com/presentation/d/15XiQawtQ4aZCwU1qQ6seXXg6jTfLU7j7K9pjh7ReucE/edit#slide=id.ged99d87c95_0_165
 \section{Introduction}
 
-The Legacy Survey of Space and Time is an optical/near-IR survey of half the sky in ugrizy bands to r 27.5 (36 nJy) based on 825 visits over a 10-year period: deep wide fast.
-Carried out by Rubin observatory on Cerro Pach\'{o}n Chile the survey will produce around 100 PB of data consisting of about a billion 16 Mpix images, enabling measurements for 40 billion objects! \cite{2019ApJ...873..111I}
+The Legacy Survey of Space and Time \citep{2019ApJ...873..111I} is an optical/near-IR survey of half the sky in ugrizy bands to r 27.5 (36 nJy) based on 825 visits over a 10-year period: deep wide fast.
+Carried out by Rubin observatory on Cerro Pach\'{o}n Chile, the survey will produce around 100\,PB of data consisting of about a billion 16\,Mpix images, enabling measurements for 40 billion objects!
 
 We have recently begun a preoperations program which includes exposing users to the Science Platform.
 
@@ -27,33 +27,24 @@ In addition running services at scale improves readiness for Data Production act
 
 \subsection{ Docker, Kubernetes, Terraform} \label{sec:infra}
 The setup of the infrastructure such as clusters on GCP is done using Terraform\footnote{\url{https://www.terraform.io/}}.
-Typically we have development, integration and production clusters for each major deployment e.g. Science Platform and Qserv.
+Typically we have development, integration and production clusters for each major deployment e.g.\ Science Platform and Qserv.
 The orchestration of the Rubin application containers is done using Kubernetes\footnote{\url{https://kubernetes.io/}} with deployment handled by ArgoCD\footnote{\url{https://argoproj.github.io/cd/}}.
-Our build system, based on Jenkins and GitHub Actions,  produces Docker containers for deployment \citep{2018SPIE10707E..09J}.
+Our build system, based on Jenkins and GitHub Actions,  produces Docker containers for deployment \citep[see e.g.,][]{2018SPIE10707E..09J}.
 
 \section {Data Previews}
-The IDF will be used for a series of Data Previews (DP)\citep{RDO-011}. DP0 is using simulated data, DP1 commissioning camera data
-and DP2 LSST Cam commissioning data. DP0 currently has two phases as outlined in Sections \ref{sec:dp01} and \ref {sec:dp02}\cite{RTN-001}.
-
-\subsection{Data Preview 0.1}\label{sec:dp01}
-In June 2021  \href{  data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates.
-Documentation is hosted on \href{ dp0-1.lsst.io}{ dp0-1.lsst.io}.
-The data served was a the DESC DC2 simulated data \citep{arXiv:2010.05926}.
-
-
-
-\subsection{Data Preview 0.2}\label{sec:dp02}
-For DP0.2 we shall reprocess the DESC data (DP0.1) with Pipelines V23, to generate a fully self-consistent data release.
+The IDF will be used for a series of Data Previews \citep[DP;][]{RDO-011}. DP0 is using simulated data, DP1 commissioning camera data,
+and DP2 LSSTCam commissioning data. DP0 currently has two phases\citep{RTN-001} with one focussing on data access and the other on data processing.
+In June 2021 \href{https://data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates as part of Data Preview 0.1 with data from the DESC DC2 simulated data \citep{arXiv:2010.05926}.
+For Data Preview 0.2 we shall reprocess the DESC data (DP0.1) with the LSST Science Pipelines v23, to generate a fully self-consistent data release.
 This will entail producing all the data products and catalogs as well as loading the  catalogs in Qserv.
-Thus demonstrating a portable set of cloud enabled tools based on Butler Gen3\citep{2019ASPC..523..653J} and PanDA.
-
+Thus demonstrating a portable set of cloud enabled tools based on Butler Gen3 \citep{2019ASPC..523..653J} and PanDA.
 
 \section{Community engagement }
 The Rubin Community Engagement Team (CET) provided documentation and support to the scientists and students participating in DP0 as delegates.
-The term ``DP0 delegates" was adopted to reflect DP0 participants’ important roles of representing the broad science community as learners, testers, and providers of feedback, and of sharing the benefits of their DP0 participation with their communities as teachers and colleagues.
+The term ``DP0 delegates'' was adopted to reflect DP0 participants’ important roles of representing the broad science community as learners, testers, and providers of feedback, and of sharing the benefits of their DP0 participation with their communities as teachers and colleagues.
 
-Documentation at \url{dp0-1.lsst.io} included a delegate's homepage listing all the resources, events, guidelines, and expectations; descriptions of the data products and table schema; instructions for accessing the RSP's three aspects and usage risks; and tutorials to demonstrate simple science investigations with the DP0 data set at the RSP.
-Delegate resources included biweekly virtual “Delegate Assemblies” with hands-on demonstrations and breakout rooms to facilitate co-working; a dedicated category in the Rubin Community Forum (\url{Community.lsst.org}) where delegates can ask questions and discuss their DP0 work; and a GitHub repository where delegates can contribute to shared code and notebooks.
+Documentation at \href{https://dp0-1.lsst.io}{dp0-1.lsst.io} included a delegate's homepage listing all the resources, events, guidelines, and expectations; descriptions of the data products and table schema; instructions for accessing the RSP's three aspects and usage risks; and tutorials to demonstrate simple science investigations with the DP0 data set at the RSP.
+Delegate resources included biweekly virtual ``Delegate Assemblies'' with hands-on demonstrations and breakout rooms to facilitate co-working; a dedicated category in the Rubin Community Forum (\url{https://community.lsst.org}) where delegates can ask questions and discuss their DP0 work; and a GitHub repository where delegates can contribute to shared code and notebooks.
 GitHub Issues were also used as a means for delegates to request technical assistance.
 
 Rubin staff from the CET and Data Production worked together to respond to delegate's requests for support and bug reports.
@@ -67,19 +58,16 @@ supported by infrastructure, that is able to help itself and to crowd-source sol
 User feedback has been very positive on this initial Science Platform.
 Users do need a lot of guidance if we are to be efficient.
 For example Qserv, accepting ADQL, can build great histograms (minutes for full dataset) but users
-tended to do this in python by running a query to extract all the data and then binning it in python.
-AutoScale really works - but its not really fast considering our containers, it takes minutes to spin up new node - eons as far as users concerned!
-DASK looks very interesting but we are not sure how to mange that yet learning to be done.
+tended to do this inPpython by running a query to extract all the data and then binning it in Python.
+AutoScale really works -- but it's not really fast considering our containers, it takes minutes to spin up new node -- eons as far as users concerned!
+DASK looks very interesting but we are not sure how to manage resource allocations yet.
 No matter how much you prepare you always learn something new!
+The Data Butler abstracts data access from the user and we designed the Butler to support pluggable backends from the beginning.
+Deploying the Butler to Google was relatively straightforward since Butler already supported Postgres for the registry and S3 for file access.
 
-Management buy in is a big part of any cloud adventure, there is a  lot of reluctance to change from in house models
-which requires much convincing. One thing we did were proof on concept studies with both Amazon \citep{2019AAS...23324505B,DMTN-137} and Google \citep{DMTN-125}. Each ran for six months and demonstrated we could deploy and operate on either platform. This allayed concerns about vendor lockin and improved cost models.
+Management buy-in is a big part of any cloud adventure, there is a lot of reluctance to change from in-house models
+which requires much convincing. One thing we did were proof of concept studies with both Amazon \citep{2020arXiv201106044B,DMTN-137} and Google \citep{DMTN-125}. Each ran for six months and demonstrated we could deploy and operate on either platform. This allayed concerns about vendor lockin and improved cost models.
 
-Since we built cloud ready services setup on GCP was fairly painless and smooth
-Support from Google and Burwood was excellent and rapid, weekly tag-ups continue to make sure everything is in place or planned.
+Since we built cloud ready services, setup on GCP was fairly painless and smooth.
+Support from Google and Burwood was excellent and rapid, and weekly tag-ups continue to make sure everything is in place or planned.
 Since Rubin is between data facilities for some years this is a quite cost effective approach.
-
-
-
-
-
