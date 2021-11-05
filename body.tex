@@ -33,20 +33,11 @@ Our build system, based on Jenkins and GitHub Actions,  produces Docker containe
 
 \section {Data Previews}
 The IDF will be used for a series of Data Previews \citep[DP;][]{RDO-011}. DP0 is using simulated data, DP1 commissioning camera data,
-and DP2 LSSTCam commissioning data. DP0 currently has two phases as outlined in Sections \ref{sec:dp01} and \ref{sec:dp02}\citep{RTN-001}.
-
-\subsection{Data Preview 0.1}\label{sec:dp01}
-In June 2021 \href{https://data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates.
-Documentation is hosted on \href{https://dp0-1.lsst.io}{dp0-1.lsst.io}.
-The data served was a the DESC DC2 simulated data \citep{arXiv:2010.05926}.
-
-
-
-\subsection{Data Preview 0.2}\label{sec:dp02}
-For DP0.2 we shall reprocess the DESC data (DP0.1) with the LSST Science Pipelines v23, to generate a fully self-consistent data release.
+and DP2 LSSTCam commissioning data. DP0 currently has two phases\citep{RTN-001} with one focussing on data access and the other on data processing.
+In June 2021 \href{https://data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates as part of Data Preview 0.1 with data from the DESC DC2 simulated data \citep{arXiv:2010.05926}.
+For Data Preview 0.2 we shall reprocess the DESC data (DP0.1) with the LSST Science Pipelines v23, to generate a fully self-consistent data release.
 This will entail producing all the data products and catalogs as well as loading the  catalogs in Qserv.
 Thus demonstrating a portable set of cloud enabled tools based on Butler Gen3 \citep{2019ASPC..523..653J} and PanDA.
-
 
 \section{Community engagement }
 The Rubin Community Engagement Team (CET) provided documentation and support to the scientists and students participating in DP0 as delegates.
