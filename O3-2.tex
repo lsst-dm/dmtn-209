@@ -79,13 +79,12 @@ Management of Google Cloud resources is fully captured in code (Terraform\footno
 
 \articlefigure[width=0.9\textwidth]{IDFarch.eps}{fig:IDFarch}{Architecture of the Interim Data Facility on Google, gray Items (alerts) are not yet implemented but shall be in 2022.}
 
-\section {Data Previews}
-The IDF will be used for a series of Data Previews \citep[DP;][]{RDO-011}. DP0 is using simulated data, DP1 commissioning camera data,
-and DP2 LSSTCam commissioning data. DP0 currently has two phases\citep{RTN-001} with one focussing on data access and the other on data processing.
-In June 2021 \href{https://data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates as part of Data Preview 0.1 with data from the DESC DC2 simulated data \citep{arXiv:2010.05926}.
-For Data Preview 0.2 we shall reprocess the DESC data (DP0.1) with the LSST Science Pipelines v23, to generate a fully self-consistent data release.
-This will entail producing all the data products and catalogs as well as loading the  catalogs in Qserv.
-Thus demonstrating a portable set of cloud enabled tools based on Butler Gen3 \citep{2019ASPC..523..653J} and PanDA.
+\section {The Pre-operations Data Preview programme}
+The IDF is hosting what is the first of a series of Data Previews \citep[DP;][]{RDO-011}. DP0 is using simulated data (as the telescope has not yet achieved First Light), DP1 will offer commissioning camera data,
+and DP2 LSSTCam commissioning data. DP0 currently has two phases\citep{RTN-001} with one focussing on data access and the other on data processing readiness.
+In June 2021 \href{https://data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates selected as part of Data Preview 0.1 with data from the DC2 simulated dataset provided by the DESC collaboration \citep{arXiv:2010.05926}.
+For Data Preview 0.2 we shall reprocess the DESC data published "as is" in DP0.1 with the LSST Science Pipelines v23, to generate a fully self-consistent data release that matches the LSST data model.
+This will entail producing many types of the final data products and catalogs as well as loading the  generated catalogs in Qserv and will demonsrate readiness (and on-prem/cloud portability) for a number of systems including our PanDA-based processing system and the Generation 3 version of the Butler \citep{2019ASPC..523..653J}.
 
 \section{Community engagement }
 The Rubin Community Engagement Team (CET) provided documentation and support to the scientists and students participating in DP0 as delegates.
