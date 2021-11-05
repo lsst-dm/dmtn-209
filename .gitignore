@@ -1,0 +1,8 @@
+authors.tex
+*.aux
+*.bbl
+*.blg
+*.dvi
+O3-002.pdf
+*.out
+*.log
