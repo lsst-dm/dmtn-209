@@ -1,4 +1,4 @@
-DOCNAME = O3-002
+DOCNAME = O3-2
 
 tex = $(filter-out $(wildcard *acronyms.tex) , $(wildcard *.tex))
 
@@ -14,13 +14,13 @@ export TEXMFHOME ?= lsst-texmf/texmf
 #$(DOCNAME).pdf: $(tex) meta.tex O3-002.bib authors.tex acronyms.tex
 #	latexmk -bibtex -xelatex -f $(DOCNAME)
 
-O3-002.pdf: $(tex) O3-002.bib authors.tex
-	latex O3-002
-	bibtex O3-002
-	latex O3-002
-	latex O3-002
-	dvipdfm O3-002
-	dvipdf O3-002
+O3-002.pdf: $(tex) $(DOCNAME).bib authors.tex
+	latex $(DOCNAME)
+	bibtex $(DOCNAME)
+	latex $(DOCNAME)
+	latex $(DOCNAME)
+	dvipdfm $(DOCNAME)
+	dvipdf $(DOCNAME)
 
 # Acronym tool allows for selection of acronyms based on tags - you may want more than DM
 acronyms.tex: $(tex) myacronyms.txt
