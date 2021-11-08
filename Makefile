@@ -26,8 +26,10 @@ O3-002.pdf: $(tex) $(DOCNAME).bib authors.tex
 acronyms.tex: $(tex) myacronyms.txt
 	$(TEXMFHOME)/../bin/generateAcronyms.py -t "DM" $(tex)
 
+# Remove the USA from the author list since that can be assumed
 authors.tex:  authors.yaml
 	python3 $(TEXMFHOME)/../bin/db2authors.py --mode adass > authors.tex
+	perl -pi -e 's|, USA||' authors.tex
 
 .PHONY: clean
 clean:
