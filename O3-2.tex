@@ -71,7 +71,7 @@ Following a competitive tender, we selected Google Cloud for this three-year act
 The IDF is a full stand-alone facility (without dependance on on-premises computing) and is a real high-availability production environment for all services currently oriented to external users. These include the Rubin Science Platform as well as underlying services such as Qserv (our high performance database system) and Butler (data abstraction middleware).
 
 The architecture is depicted in Figure \ref{fig:IDFarch} and leverages the Google Kubernetes Engine (GKE) and Google Cloud Storage (GCS) to scale up and down as needed depending on demand.
-Kubernetes is our reference deployment platform both on-premises and in the Cloud as our services make heavy use of container orchestration patterns and consume containers produced by our build systems based on Jenkins and GitHub Actions,  produces Docker containers for deployment \citep[see e.g.,][]{2018SPIE10707E..09J}.
+Kubernetes is our reference deployment platform both on-premises and in the Cloud as our services make heavy use of container orchestration patterns and consume containers produced by our build systems based on Jenkins and GitHub Actions \citep[see e.g.,][]{2018SPIE10707E..09J}.
 
 Management of Google Cloud resources is fully captured in code (Terraform) developed by the Burwood Group and no production services rely on ad-hoc interactive use of the Google console. We use continuous deployment techniques to manage our services including tools such as ArgoCD\footnote{\url{https://argoproj.github.io/cd/}} even though we don't practice pure continuous deployment, having instead settled on a gated release model \citep{SQR-056}.
 
