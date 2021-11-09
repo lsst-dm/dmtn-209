@@ -23,8 +23,12 @@
 % Use mixed case type for the shortened title
 % Ensure shortened title does not cause an overfull hbox LaTeX error
 % See ASPmanual2010.pdf 2.1.4  and ManuscriptInstructions.pdf for more details
-\markboth{O'Mullane, Economou}{Rubin Science Platform on Google Title}
+\markboth{O'Mullane, Economou}{Rubin Science Platform on Google}
 
+%\ssindex{protocols!TAP}
+%\ssindex{protocols!GKE}
+%\ssindex{protocols!GCP}
+%\ssindex{observatories!ground-based!Rubin}
 \begin{document}
 
 \title{Rubin Science Platform on Google: the story so far.}
@@ -38,22 +42,65 @@
 % authors share an affiliation this should be in a single \affil which can then
 % be referenced for several author names. If only one affiliation, no footnotes are needed.
 % See ManuscriptInstructions.pdf and ASP's manual2010.pdf 3.1.4 for more details
-\input{authors}
 
-% There should be one \aindex line (commented out) for each author. These are used to
-% build up the author index for the Proceedings. The surname must come first, followed by
-% initials. Note the use of ~ before each initial to control spacing.
-% The \author entries (see above) have surname last. These \aindex entries have
-% surname first.
-% The Aindex.py command willl create them for you after you have constructed the \author
-% The first entry should be the first author, for bold-facing the author index page-reference
-
-%\aindex{FistAuthor1,~S.~A.}
-%\aindex{Author2,~S.~B.}
-%\aindex{Author3,~S.}
+%% Regenerate using:
+%%    python $LSST_TEXMF_DIR/bin/db2authors.py > authors.tex
 
 
-\input{abstract}
+\author{William~O'Mullane,$^1$ Frossie~Economou,$^1$ Flora~Huang,$^2$ Dan~Speck,$^3$ Hsin-Fang~Chiang,$^1$ Melissa~L.~Graham,$^4$ Russ~Allbery,$^1$ Christine~Banek,$^1$ Jonathan~Sick,$^1$ Adam~J.~Thornton,$^1$ Jess~Masciarelli,$^2$ Kian-Tat~Lim,$^5$ Fritz~Mueller,$^5$ Sergey~Padolski,$^6$ Tim~Jenness,$^1$ K.~Simon~Krughoff,$^1$ Michelle~Gower,$^7$ Leanne~P.~Guy,$^1$ and Gregory~P.~Dubois-Felsmann$^8$ }
+\affil{$^1$Rubin Observatory Project Office, 950 N.\ Cherry Ave., Tucson, AZ  85719}
+\affil{$^2$Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043}
+\affil{$^3$Burwood Group, 125 South Wacker Drive Suite 2950, Chicago, IL 60606}
+\affil{$^4$University of Washington, Dept.\ of Astronomy, Box 351580, Seattle, WA 98195}
+\affil{$^5$SLAC National Accelerator Laboratory,  2575 Sand Hill Rd., Menlo Park, CA 94025}
+\affil{$^6$Brookhaven National Laboratory, Upton, NY 11973}
+\affil{$^7$NCSA, University of Illinois at Urbana-Champaign, 1205 W.\ Clark St., Urbana, IL 61801}
+\affil{$^8$IPAC, California Institute of Technology, MS 100-22, Pasadena, CA 91125}
+\paperauthor{William~O'Mullane}{womullan@lsst.org}{0000-0003-4141-6195}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Frossie~Economou}{}{0000-0002-8333-7615}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Flora~Huang}{huangflora@google.com}{None}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Dan~Speck}{dspeck@burwood.com}{None}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Hsin-Fang~Chiang}{}{0000-0002-1181-1621}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Melissa~L.~Graham}{}{0000-0002-9154-3136}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Russ~Allbery}{}{None}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Christine~Banek}{}{None}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Jonathan~Sick}{}{0000-0003-3001-676X}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Adam~J.~Thornton}{}{0000-0001-9342-6032}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Jess~Masciarelli}{}{None}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Kian-Tat~Lim}{}{0000-0002-6338-6516}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Fritz~Mueller}{}{None}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Sergey~Padolski}{}{None}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Tim~Jenness}{}{0000-0001-5982-167X}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{K.~Simon~Krughoff}{}{0000-0002-4410-7868}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Michelle~Gower}{}{None}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Leanne~P.~Guy}{}{0000-0003-0800-8755}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+\paperauthor{Gregory~P.~Dubois-Felsmann}{}{0000-0003-1598-6979}{Rubin Observatory Project Office}{}{ Tucson}{AZ}{85719}{ USA}
+% Yes they said to have these index commands commented out.
+%\aindex{O'Mullane,William}
+%\aindex{Economou,Frossie}
+%\aindex{Huang,Flora}
+%\aindex{Speck,Dan}
+%\aindex{Chiang,Hsin-Fang}
+%\aindex{Graham,Melissa~L.}
+%\aindex{Allbery,Russ}
+%\aindex{Banek,Christine}
+%\aindex{Sick,Jonathan}
+%\aindex{Thornton,Adam~J.}
+%\aindex{Masciarelli,Jess}
+%\aindex{Lim,Kian-Tat}
+%\aindex{Mueller,Fritz}
+%\aindex{Padolski,Sergey}
+%\aindex{Jenness,Tim}
+%\aindex{Krughoff,K.~Simon}
+%\aindex{Gower,Michelle}
+%\aindex{Guy,Leanne~P.}
+%\aindex{Dubois-Felsmann,Gregory~P.}
+
+
+\begin{abstract}
+
+We describe Rubin Observatory's experience with offering a data access facility (and associated services including our Science Platform) deployed on Google Cloud infrastructure as part of our pre-Operations Data Preview program.
+\end{abstract}
 
 %Slides on https://docs.google.com/presentation/d/15XiQawtQ4aZCwU1qQ6seXXg6jTfLU7j7K9pjh7ReucE/edit#slide=id.ged99d87c95_0_165
 \section{Introduction}
@@ -79,7 +126,9 @@ Management of Google Cloud resources is fully captured in code (Terraform) devel
 
 \section {The Pre-operations Data Preview programme}
 The IDF is hosting what is the first of a series of Data Previews (DP). DP0 is using simulated data (as the telescope has not yet achieved First Light), DP1 will offer commissioning camera data,
-and DP2 LSSTCam commissioning data. DP0 currently has two phases\citep{RTN-001} with one focussing on data access and the other on data processing readiness.
+and DP2 LSSTCam commissioning data.
+% this one ref makes it too long \citep{RDO-011}.
+DP0 currently has two phases\citep{RTN-001} with one focussing on data access and the other on data processing readiness.
 In June 2021 \href{https://data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates selected as part of Data Preview 0.1 with data from the DC2 simulated dataset provided by the DESC collaboration \citep{arXiv:2010.05926}.
 For Data Preview 0.2 we shall reprocess the DESC data published "as is" in DP0.1 with the LSST Science Pipelines v23, to generate a fully self-consistent data release that matches the LSST data model.
 This will entail producing many types of the final data products and catalogs as well as loading the  generated catalogs in Qserv and will demonsrate readiness (and on-prem/cloud portability) for a number of systems including our PanDA-based processing system and the Generation 3 version of the Butler \citep{2019ASPC..523..653J}.
