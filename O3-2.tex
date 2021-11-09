@@ -23,7 +23,7 @@
 % Use mixed case type for the shortened title
 % Ensure shortened title does not cause an overfull hbox LaTeX error
 % See ASPmanual2010.pdf 2.1.4  and ManuscriptInstructions.pdf for more details
-\markboth{Economou, O'Mullane}{Rubin Science Platform on Google Title}
+\markboth{O'Mullane, Economou}{Rubin Science Platform on Google Title}
 
 \begin{document}
 
@@ -55,82 +55,64 @@
 
 \input{abstract}
 
-
-
 %Slides on https://docs.google.com/presentation/d/15XiQawtQ4aZCwU1qQ6seXXg6jTfLU7j7K9pjh7ReucE/edit#slide=id.ged99d87c95_0_165
 \section{Introduction}
 
-The Legacy Survey of Space and Time \citep{2019ApJ...873..111I} is an optical/near-IR survey of half the sky in ugrizy bands to r 27.5 (36 nJy) based on 825 visits over a 10-year period: deep wide fast.
+The Legacy Survey of Space and Time \citep{2019ApJ...873..111I} is "deep wide fast" optical/near-IR survey of half the sky in ugrizy bands to r 27.5 (36 nJy) based on 825 visits over a 10-year period.
 Carried out by Rubin observatory on Cerro Pach\'{o}n Chile, the survey will produce around 100\,PB of data consisting of about a billion 16\,Mpix images, enabling measurements for 40 billion objects!
 
-We have recently begun a preoperations program which includes exposing users to the Science Platform.
+As a big data project, Rubin is providing a "bring-your-compute-to-the-data" model relying on a project-provided Rubin Science Platform (hereafter RSP) to allow science users to access, visualize and analyze survey data products.
+This paper describes our experience with an early release of the RSP to users through our pre-operations program.
 
+\section{The Rubin Interim Data Facility on Google Cloud}
 
-\section{Interim Data Facility on Google }
-We decided on an Interim Data Facility (IDF) to mitigate the risks of — and the delay imposed by — the US Data Facility(USDF)  selection process.
-We felt this an excellent transition activity to prepare the operations  team and Community for Rubin data.
-In a competitive tender we selected Google for this three year activity.
-We have installed construction delivered services (Rubin Science Platform and middleware/plumbing) on Google Cloud Platform.
-The architecture is depicted in Figure \ref{fig:IDFarch}.
-We primarily leverage Google Kubernetes Engine (GKE) and Google Cloud Storage (GCS) to scale up and down as needed while batch processing images  and serving the data release products.
-The full stack was automated using Terraform with help from the Burwood Group, which is not highlighted in the diagram but is outlined in section \ref{sec:infra}.
-In addition running services at scale improves readiness for Data Production activity during full survey operations.
+We decided to deploy services involved in our pre-operations program on a commodity cloud services provider as an Interim Data Facility (IDF) to mitigate uncertainty in the final location of our operations-era US Data Facility (USDF).
+Following a competitive tender, we selected Google Cloud for this three-year activity to prepare our team for operational readiness and our community for interacting with Rubin data and services.
+The IDF is a full stand-alone facility (without dependance on on-premises computing) and is a real high-availability production environment for all services currently oriented to external users. These include the Rubin Science Platform as well as underlying services such as Qserv (our high performance database system) and Butler (data abstraction middleware).
 
+The architecture is depicted in Figure \ref{fig:IDFarch} and leverages the Google Kubernetes Engine (GKE) and Google Cloud Storage (GCS) to scale up and down as needed depending on demand.
+Kubernetes is our reference deployment platform both on-premises and in the Cloud as our services make heavy use of container orchestration patterns and consume containers produced by our build systems based on Jenkins and GitHub Actions \citep[see e.g.,][]{2018SPIE10707E..09J}.
 
-
+Management of Google Cloud resources is fully captured in code (Terraform) developed by the Burwood Group and no production services rely on ad-hoc interactive use of the Google console. We use continuous deployment techniques to manage our services including tools such as ArgoCD\footnote{\url{https://argoproj.github.io/cd/}} even though we don't practice pure continuous deployment, having instead settled on a gated release model \citep{SQR-056}.
 
 \articlefigure[width=0.9\textwidth]{IDFarch.eps}{fig:IDFarch}{Architecture of the Interim Data Facility on Google, gray Items (alerts) are not yet implemented but shall be in 2022.}
 
+\section {The Pre-operations Data Preview programme}
+The IDF is hosting what is the first of a series of Data Previews (DP). DP0 is using simulated data (as the telescope has not yet achieved First Light), DP1 will offer commissioning camera data,
+and DP2 LSSTCam commissioning data. DP0 currently has two phases\citep{RTN-001} with one focussing on data access and the other on data processing readiness.
+In June 2021 \href{https://data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates selected as part of Data Preview 0.1 with data from the DC2 simulated dataset provided by the DESC collaboration \citep{arXiv:2010.05926}.
+For Data Preview 0.2 we shall reprocess the DESC data published "as is" in DP0.1 with the LSST Science Pipelines v23, to generate a fully self-consistent data release that matches the LSST data model.
+This will entail producing many types of the final data products and catalogs as well as loading the  generated catalogs in Qserv and will demonsrate readiness (and on-prem/cloud portability) for a number of systems including our PanDA-based processing system and the Generation 3 version of the Butler \citep{2019ASPC..523..653J}.
 
+\section{Community Engagement }
 
-\subsection{ Docker, Kubernetes, Terraform} \label{sec:infra}
-The setup of the infrastructure such as clusters on GCP is done using Terraform\footnote{\url{https://www.terraform.io/}}.
-Typically we have development, integration and production clusters for each major deployment e.g.\ Science Platform and Qserv.
-The orchestration of the Rubin application containers is done using Kubernetes\footnote{\url{https://kubernetes.io/}} with deployment handled by ArgoCD\footnote{\url{https://argoproj.github.io/cd/}}.
-Our build system, based on Jenkins and GitHub Actions,  produces Docker containers for deployment \citep[see e.g.,][]{2018SPIE10707E..09J}.
+Besides the technical and operational goals, a key aim of deployment of the Interim Data Facility was the engagement of the future community of scientists and students by providing early access to ``DP0 delegates'',a group of users representing the broad science community as learners, testers, and providers of feedback, and tasked with sharing the benefits of their DP0 participation with their communities.
 
-\section {Data Previews}
-The IDF will be used for a series of Data Previews \citep[DP;][]{RDO-011}. DP0 is using simulated data, DP1 commissioning camera data,
-and DP2 LSSTCam commissioning data. DP0 currently has two phases\citep{RTN-001} with one focussing on data access and the other on data processing.
-In June 2021 \href{https://data.lsst.cloud}{data.lsst.cloud} was opened up to the first 200 delegates as part of Data Preview 0.1 with data from the DESC DC2 simulated data \citep{arXiv:2010.05926}.
-For Data Preview 0.2 we shall reprocess the DESC data (DP0.1) with the LSST Science Pipelines v23, to generate a fully self-consistent data release.
-This will entail producing all the data products and catalogs as well as loading the  catalogs in Qserv.
-Thus demonstrating a portable set of cloud enabled tools based on Butler Gen3 \citep{2019ASPC..523..653J} and PanDA.
+Besides extensive document at \href{https://dp0-1.lsst.io}{dp0-1.lsst.io} supporting delegates in a number of ways, delegate resources included biweekly virtual ``Delegate Assemblies'' with hands-on demonstrations and breakout rooms to facilitate co-working; a dedicated category in the Rubin Community Forum (\url{https://community.lsst.org}) (based on the Discourse web forum platform) where delegates can ask questions and discuss their DP0 work; and a GitHub repository where delegates can contribute to shared code and notebooks.
+GitHub Issues were also used as the primary means for delegates to request technical assistance. All of the delegate pedagogical resources are publicly accessible.
 
-\section{Community engagement }
-The Rubin Community Engagement Team (CET) provided documentation and support to the scientists and students participating in DP0 as delegates.
-The term ``DP0 delegates'' was adopted to reflect DP0 participants’ important roles of representing the broad science community as learners, testers, and providers of feedback, and of sharing the benefits of their DP0 participation with their communities as teachers and colleagues.
-
-Documentation at \href{https://dp0-1.lsst.io}{dp0-1.lsst.io} included a delegate's homepage listing all the resources, events, guidelines, and expectations; descriptions of the data products and table schema; instructions for accessing the RSP's three aspects and usage risks; and tutorials to demonstrate simple science investigations with the DP0 data set at the RSP.
-Delegate resources included biweekly virtual ``Delegate Assemblies'' with hands-on demonstrations and breakout rooms to facilitate co-working; a dedicated category in the Rubin Community Forum (\url{https://community.lsst.org}) where delegates can ask questions and discuss their DP0 work; and a GitHub repository where delegates can contribute to shared code and notebooks.
-GitHub Issues were also used as a means for delegates to request technical assistance.
-
-Rubin staff from the CET and Data Production worked together to respond to delegate's requests for support and bug reports.
-All of the delegate resources are publicly accessible to non-delegates, including the assemblies (and their recordings) and the Community Forum discussions.
 Some aspects of the Community Engagement model as applied to DP0 are designed to scale to thousands of users for the future Data Previews, such as the extensive documentation, the tutorials, and the use of the Community Forum.
-However other aspects, such as the frequent live virtual sessions, would not scale well to thousands of users and were instead specifically designed to ramp up skill levels from novice to intermediate in order to seed expertise with Rubin software in the community.
-Looking forward to future Data Previews, the Community Engagement strategy will focus on building and fostering a vibrant science community,
-supported by infrastructure, that is able to help itself and to crowd-source solutions.
+Other aspects, such as the frequent live virtual sessions, may not scale well to thousands of users and were specifically designed to ramp up skill levels from novice to intermediate in order to seed expertise with Rubin software in the community.
+For future Data Previews, the Community Engagement strategy will focus on building infrastructure to foster a vibrant science community, that enables self-help, peer-to-peer help and crowdsourced support.
 
-\section{Conclusion and lessons learned}
-User feedback has been very positive on this initial Science Platform.
-Users do need a lot of guidance if we are to be efficient.
-For example Qserv, accepting ADQL, can build great histograms (minutes for full dataset) but users
-tended to do this inPpython by running a query to extract all the data and then binning it in Python.
-AutoScale really works -- but it's not really fast considering our containers, it takes minutes to spin up new node -- eons as far as users concerned!
-DASK looks very interesting but we are not sure how to manage resource allocations yet.
-No matter how much you prepare you always learn something new!
-The Data Butler abstracts data access from the user and we designed the Butler to support pluggable backends from the beginning.
-Deploying the Butler to Google was relatively straightforward since Butler already supported Postgres for the registry and S3 for file access.
+\section{Cloud as a primary platform for astronomical data services}
 
-Management buy-in is a big part of any cloud adventure, there is a lot of reluctance to change from in-house models
-which requires much convincing. One thing we did were proof of concept studies with both Amazon \citep{2020arXiv201106044B,DMTN-137} and Google \citep{DMTN-125}. Each ran for six months and demonstrated we could deploy and operate on either platform. This allayed concerns about vendor lockin and improved cost models.
+The successful launch of our Data Preview program with our cloud-based Science Platform reinforced our view that commodity infrastructure offers unparalleled technical and programmatic advantages in delivering large-scale data services to astronomers. Some key points:
 
-Since we built cloud ready services, setup on GCP was fairly painless and smooth.
-Support from Google and Burwood was excellent and rapid, and weekly tag-ups continue to make sure everything is in place or planned.
-Since Rubin is between data facilities for some years this is a quite cost effective approach.
+\begin{itemize}
 
+    \item Architecting systems using cloud-native techniques (such as targetting Kubernetes as the deployment platform) allows painless transition between commodity and on-premises infrastructure.
+    \item There are tangible benefits to working with a highly popular toolchain both for a project and its developers, including the ease of contracting short-term bootstrapping help as Rubin did with the Burwood Group.
+    \item Developers love the self-serve aspect of cloud infrastructures (and their velocity reflects this).
+    \item Use of commercial cloud environments offers an ideal way to mitigate schedule and technical risk in the deliver of on-premises computing.
+    \item There are significant security advantages in placing public users in a separate security domain from on-premises resources.
+    \item We are seriously evaluating whether an on-prem/cloud hybrid model is actually the best way forward permanently for Rubin Operations.
+\end{itemize}
+
+While use of these services are not cheap (despite academic and government discounts that can be had for the asking), they offer great value for money (and are frequently disadvantaged in comparisons with on-premises cost by the lack of total cost accounting of in-house facilities).
+Management buy-in is a big part of any cloud adventure; in our case we were helped by our proof of concept studies with both Amazon \citep{2020arXiv201106044B,DMTN-137} and Google \citep{DMTN-125}. Each ran for six months and demonstrated we could deploy and operate on either platform. This allayed concerns about vendor lock-in and improved our cost models.
+
+We believe use of commodity cloud infrastructure will allow scientific facilities to focus on fertile domain-relevant middleware development instead of on-premises compute facilities and we hope that the funding landscape can evolve to facilitate this paradigm shift.
 \bibliography{O3-2}  % For BibTex
-
 
 \end{document}
